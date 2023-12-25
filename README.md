@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Template Next Auth
 
-## Getting Started
+Template next js yang sudah di config dengan prisma ORM dan next auth
 
-First, run the development server:
+## Usage
+
+Install template setelah clone project:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm install
+  cd template-next-auth
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Configurasi file .env dengan Github dan Google oauth:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# database config
+DATABASE_URL="mysql://root@localhost:3306/template-next"
 
-## Learn More
+# for the next config
+NEXTAUTH_SECRET="NEXTAUTH_SECRET"
+NEXTAUTH_URL="http://localhost:3000/"
 
-To learn more about Next.js, take a look at the following resources:
+# for github and google auth
+GITHUB_ID=
+GITHUB_SECRET=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+## Configurasi DB
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Buat Database terlebih dahulu sebelum configurasi DB:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npx prisma db push
+```
+
+generate schema @prisma/client
+
+```bash
+npx prisma generate
+```
+
+## Route middleware
+
+setting route di src/middleware.ts
+
+```bash
+import { withAuth } from "next-auth/middleware";
+
+export default withAuth({
+  pages: {
+    signIn: "/auth",
+  },
+});
+
+//setting di sini route yang akan di authtentifikasi
+export const config = {
+  matcher: "/dashboard/:path*",
+};
+
+```
+
+## 🚀 About Me
+
+saya mahasiswa dari STMIK Widya Pratama, yang masih belajar menguasai 5 element terutama element petir.
