@@ -1,0 +1,13 @@
+# database config
+DATABASE_URL="mysql://root@localhost:3306/template-next"
+
+# for the next config
+NEXTAUTH_SECRET="NEXTAUTH_SECRET"
+NEXTAUTH_URL="http://localhost:3000/"
+
+# for github and google auth
+GITHUB_ID=
+GITHUB_SECRET=
+
+GOOGLE_CLIENT_ID=1
+GOOGLE_CLIENT_SECRET=
