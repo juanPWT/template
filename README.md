@@ -7,8 +7,8 @@ Template next js yang sudah di config dengan prisma ORM dan next auth
 Install template setelah clone project:
 
 ```bash
-  npm install
   cd template-next-auth
+  npm install
 ```
 
 Configurasi file .env dengan Github dan Google oauth:
