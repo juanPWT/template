@@ -6,10 +6,16 @@ import { FaCamera } from "react-icons/fa";
 interface InputImageProps {
   id?: string;
   image?: string | null | undefined;
+  disabled?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputImage: React.FC<InputImageProps> = ({ id, image, onChange }) => {
+const InputImage: React.FC<InputImageProps> = ({
+  id,
+  image,
+  onChange,
+  disabled,
+}) => {
   return (
     <>
       <label
@@ -18,15 +24,16 @@ const InputImage: React.FC<InputImageProps> = ({ id, image, onChange }) => {
       >
         <FaCamera className="absolute hidden group-hover:flex text-5xl z-10" />
         <Image
-          src={image || "/person.png"}
+          src={image && image !== "/image/user/null" ? image : "/person.png"}
           alt="person"
           width={200}
           height={200}
-          className="bg-white  rounded-full w-[200px] h-[200px]  group-hover:opacity-40 group-hover:ring-1 group-hover:ring-sky-500"
+          className="bg-white object-cover  rounded-full w-[200px] h-[200px]  group-hover:opacity-40 group-hover:ring-1 group-hover:ring-sky-500"
         />
       </label>
       <input
         type="file"
+        disabled={disabled}
         onChange={onChange}
         accept="image/*"
         id={id}

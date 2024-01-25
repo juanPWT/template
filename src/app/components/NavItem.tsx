@@ -15,12 +15,12 @@ const NavItem: React.FC<NavItemProps> = ({ image, name }) => {
     <div className="w-full flex justify-end items-center gap-3 relative">
       <p className="text-slate-900 text-sm lg:text-base">{name}</p>
       <Image
-        src={image || "/person.png"}
+        src={image !== null ? `/image/user/${image}` : "/person.png"}
         alt="user"
         width={50}
         height={50}
         onClick={() => setShow(!show)}
-        className="hover:opacity-50 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-slate-900 rounded-full bg-white"
+        className="w-12 h-12 hover:opacity-50 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-slate-900 rounded-full bg-white"
       />
       {show && <Dropdown />}
     </div>
