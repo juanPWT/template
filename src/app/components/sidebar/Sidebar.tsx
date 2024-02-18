@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ image }) => {
     <div className="hidden min-h-screen fixed left-0 px-2 lg:flex flex-col justify-between bg-white ">
       <div className="pt-10 flex justify-center items-center">
         <Image
-          src={image !== null ? `/image/user/${image}` : "/person.png"}
+          src={image as string}
           alt="person"
           width={50}
           height={50}

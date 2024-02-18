@@ -11,9 +11,7 @@ const CardProfil: React.FC<CardProfilProps> = ({ user }) => {
   return (
     <div className="flex flex-col items-center justify-center relative">
       <Image
-        src={
-          user?.image !== null ? `/image/user/${user?.image} ` : "/person.png"
-        }
+        src={user?.image as string}
         alt="profil image"
         width={100}
         height={100}

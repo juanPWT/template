@@ -24,7 +24,7 @@ export const PUT = async (req: NextRequest) => {
         id: currentUser.id,
       },
       data: {
-        image: String(image.name),
+        image: `${process.env.IMAGE_URL}user/${image.name}`,
       },
     });
 

@@ -19,6 +19,7 @@ export async function POST(request: Request) {
         name,
         email,
         hashedPassword,
+        image: `${process.env.IMAGE_URL}user/person.png`,
       },
     });
 

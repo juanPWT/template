@@ -6,6 +6,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ProfilPictureProps {
   user: User | null | undefined;
@@ -15,6 +16,8 @@ const ProfilPicture: React.FC<ProfilPictureProps> = ({ user }) => {
   const [priviewImage, setPriviewImage] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
+
+  const router = useRouter();
 
   const handlerOnChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -46,9 +49,7 @@ const ProfilPicture: React.FC<ProfilPictureProps> = ({ user }) => {
       .then((res) => {
         setIsLoading(false);
         toast.success("success edit image");
-        setInterval(() => {
-          window.location.reload();
-        }, 2000);
+        router.refresh();
       })
       .catch((err) => {
         setIsLoading(false);
@@ -65,9 +66,7 @@ const ProfilPicture: React.FC<ProfilPictureProps> = ({ user }) => {
       <InputImage
         id="image"
         disabled={isLoading}
-        image={
-          priviewImage === null ? `/image/user/${user?.image}` : priviewImage
-        }
+        image={priviewImage ?? user?.image}
         onChange={handlerOnChangeImage}
       />
       <ButtonSubmit type="submit">edit image</ButtonSubmit>

@@ -6,6 +6,7 @@ import InputDisble from "./InputDisble";
 import InputController from "@/app/components/inputs/InputController";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface DataUserProps {
   email: string | undefined | null;
@@ -14,6 +15,7 @@ interface DataUserProps {
 
 const DataUser: React.FC<DataUserProps> = ({ name, email }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const { handleSubmit, control } = useForm<FieldValues>({
     defaultValues: {
@@ -33,9 +35,7 @@ const DataUser: React.FC<DataUserProps> = ({ name, email }) => {
       .put("/api/user", data)
       .then((res) => {
         toast.success(`updated username to ${data.name}`);
-        setInterval(() => {
-          window.location.reload();
-        }, 2000);
+        router.refresh();
       })
       .catch((err) => {
         console.log(err);

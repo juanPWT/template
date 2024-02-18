@@ -15,7 +15,7 @@ const NavItem: React.FC<NavItemProps> = ({ image, name }) => {
     <div className="w-full flex justify-end items-center gap-3 relative">
       <p className="text-slate-900 text-sm lg:text-base">{name}</p>
       <Image
-        src={image !== null ? `/image/user/${image}` : "/person.png"}
+        src={image as string}
         alt="user"
         width={50}
         height={50}

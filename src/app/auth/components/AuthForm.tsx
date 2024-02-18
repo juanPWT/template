@@ -43,11 +43,18 @@ const AuthForm = () => {
       name: "",
       email: "",
       password: "",
+      confPassword: "",
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+
+    if (data.password !== data.confPassword) {
+      toast.error("password and confirm password not match");
+      setIsLoading(false);
+      return;
+    }
 
     if (variant === "register") {
       axios
@@ -113,7 +120,7 @@ const AuthForm = () => {
           <Input
             id="email"
             label="email"
-            type="text"
+            type="email"
             register={register}
             errors={errors}
             disable={isLoading}
@@ -126,6 +133,16 @@ const AuthForm = () => {
             errors={errors}
             disable={isLoading}
           />
+          {variant === "register" && (
+            <Input
+              id="confPassword"
+              label="confirm password"
+              type="password"
+              register={register}
+              errors={errors}
+              disable={isLoading}
+            />
+          )}
           <ButtonSubmit type="submit" fullwidth disabled={isLoading}>
             {variant === "login" ? "sign in" : "sign up"}
           </ButtonSubmit>
